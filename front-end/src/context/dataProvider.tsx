@@ -1,21 +1,22 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
-const UserContext = createContext({});
-
-// type ChildProps = {
-//     children: React.ReactNode
-// }
-interface Bool {
-    open: boolean;
+interface ModalOpen {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export const UserProvider = ({children}: {children: ReactNode}) => {
+const ModalState: ModalOpen = {
+  open: false,
+  setOpen: () => {},
+};
+
+export const UserContext = React.createContext<ModalOpen>(ModalState);
+
+export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = React.useState<boolean>(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
   return (
-    <UserContext.Provider value={{ open, setOpen, handleClose, handleOpen }}>
+    <UserContext.Provider value={{ open, setOpen }}>
       {children}
     </UserContext.Provider>
   );
 };
-export const UserData = () => useContext(UserContext);

@@ -1,16 +1,16 @@
 import Header from "../components/header";
 import { Box, Typography, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CSS from "csstype";
 import BasModal from "../components/modal";
 import axios from "axios";
-import { UserData } from "../context/dataProvider";
+import { UserContext} from "../context/dataProvider";
 
 const Landing = () => {
 
   const [data, setData] = React.useState<string>("");
   const [url, setUrl] = React.useState<string>("");
-  const {open, handleClose, handleOpen} = UserData();
+  const {open, setOpen} = React.useContext(UserContext);
   
   const func = async () => {
     try {

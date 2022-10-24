@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { TextField } from '@mui/material';
+import { UserContext } from '../context/dataProvider';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -14,13 +16,22 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  display: 'flex',
+  flexDirection: 'column',
 };
 
 const BasModal = () => {
-  const [open, setOpen] = React.useState(false);
+
+  const {open, setOpen} = React.useContext(UserContext)
+  const [sign, setSign] = React.useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const signFunc = () => {
+    setSign(true)
+  }
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
@@ -31,13 +42,11 @@ const BasModal = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          {!sign ? <TextField value={email} onChange={(e) => setEmail(e.target.value)} label={'email Addres'}/> : <TextField value={email} onChange={(e) => setEmail(e.target.value)}/>}
+          {!sign ? <TextField value={password} onChange={(e) => setPassword(e.target.value)}/> : <TextField value={password} onChange={(e) => setPassword(e.target.value)}/>}
+          {!sign ? <Button onClick={signFunc}>Login</Button> : <Button onClick={signFunc}>Sign Up</Button>}
         </Box>
+
       </Modal>
     </div>
   );

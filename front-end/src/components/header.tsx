@@ -1,11 +1,19 @@
 import { Box, Typography, Button } from '@mui/material';
 import CSS  from 'csstype'
+import React, { useContext } from 'react';
+import { UserContext } from '../context/dataProvider';
+import BasModal from './modal';
 const Header = () => {
+    const {open, setOpen} = React.useContext(UserContext)
+
+    const set = () => {
+        setOpen(true)
+    }
     return(
         <div style={headerStyle}>
             <Box sx={topContainer}>
                 <Typography sx={textStyle}>Хэрхэн ажилладаг вэ?</Typography>
-                <Button sx={buttonStyle}>Нэвтрэх</Button>
+                <Button sx={buttonStyle} onClick={set}>Нэвтрэх</Button>
             </Box>
         </div>
     )
