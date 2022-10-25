@@ -12,12 +12,14 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
+  height:250,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
   display: 'flex',
   flexDirection: 'column',
+  justifyContent:"space-between",
 };
 
 const BasModal = () => {
@@ -42,9 +44,10 @@ const BasModal = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {!sign ? <TextField value={email} onChange={(e) => setEmail(e.target.value)} label={'email Addres'}/> : <TextField value={email} onChange={(e) => setEmail(e.target.value)}/>}
-          {!sign ? <TextField value={password} onChange={(e) => setPassword(e.target.value)}/> : <TextField value={password} onChange={(e) => setPassword(e.target.value)}/>}
-          {!sign ? <Button onClick={signFunc}>Login</Button> : <Button onClick={signFunc}>Sign Up</Button>}
+          {!sign ? <TextField value={email} onChange={(e) => setEmail(e.target.value)} label={'email Addres'}/> : <TextField value={email} onChange={(e) => setEmail(e.target.value)} label={"create email"}/>}
+          {!sign ? <TextField value={password} onChange={(e) => setPassword(e.target.value)} label={"password"}/> : <TextField value={password} onChange={(e) => setPassword(e.target.value)} label={"create password"}/>}
+          {!sign ? <Button onClick={signFunc}>Login</Button> : <Button>Sign Up</Button>}
+          <p onClick={signFunc}>create account</p>
         </Box>
 
       </Modal>
